@@ -9,7 +9,7 @@ import {GET_NEWS} from '../actions';
 export default function (state = {}, action) {
     switch (action.type){
         case GET_NEWS:
-            return action.payload;
+            return action.payload.data;
         default:
             return state;
     }

@@ -14,12 +14,24 @@ import axios from 'axios';
 export const GET_NEWS = "get_news";
 
 //API Info
-const ROOT_URL = "https://newsapi.org/v1/articles";
+const ROOT_URL = "https://newsapi.org/v1/";
 const API_KEY = "";
 const SIG = `?apiKey=${API_KEY}`;
 
-export function getNews() {
-    const requestURL = `${ROOT_URL}${SIG}`;
+
+//https://newsapi.org/v1/sources?language=en
+export function getSources() {
+    const requestURL = `${ROOT_URL}sources${SIG}&language=en`;
+    const request = axios.get(requestURL);
+    return{
+        type: GET_NEWS,
+        payload: request
+    };
+}
+
+//https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=
+export function getArticles() {
+    const requestURL = `${ROOT_URL}articles${SIG}&source=techcrunch`;
     const request = axios.get(requestURL);
     return{
         type: GET_NEWS,
