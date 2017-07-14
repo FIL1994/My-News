@@ -1,6 +1,8 @@
 /**
  * @author Philip Van Raalte
  * @date 2017-07-08.
+ *
+ *	Home Component
  */
 
 import React, {Component} from 'react';
