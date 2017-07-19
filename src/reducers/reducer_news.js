@@ -1,6 +1,8 @@
 /**
  * @author Philip Van Raalte
  * @date 2017-07-08.
+ 
+    Reducer News
  */
 
 import _ from 'lodash';
