@@ -2,4 +2,5 @@
 A news app with React-Redux and news api.
 
 TO DO:
-<br>-display news
+<br>-Featured feeds
+<br>-feed lists
