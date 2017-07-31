@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 module.exports = {
   entry: [
     './src/index.js'
@@ -14,6 +16,9 @@ module.exports = {
       query: {
         presets: ['react', 'es2015', 'stage-1']
       }
+    },
+    {
+        test:/\.css$/,loader:'style!css!'
     }]
   },
   resolve: {
@@ -21,7 +26,13 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    port: 8090,
+    port: 8082,
     contentBase: './'
-  }
+  },
+  plugins: [
+      new webpack.DefinePlugin({
+          //production || development
+          'process.env.NODE_ENV': JSON.stringify('production') //JSON.stringify(process.env.NODE_ENV || 'production')
+      }),
+  ]
 };

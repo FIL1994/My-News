@@ -1,11 +1,26 @@
-h1{
-	
+.main-container {
+    padding: 0 40px 120px;
+    margin-left: -1px;
+    min-height: 500px;
+    overflow: hidden;
 }
 
-h2{
-	
+.center-block{
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
 }
 
-h3{
-	
+.center-text{
+    text-align: center;
+}
+
+.list-item{
+    border-bottom-style: solid !important;
+    border-bottom-width: 1px !important;
+    border-bottom-color: rgba(21, 21, 21, 0.4) !important;
+}
+
+.left-space{
+    margin-left: 10px;
 }

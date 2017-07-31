@@ -12,6 +12,7 @@ import axios from 'axios';
 
 //action types
 export const GET_NEWS = "get_news";
+export const GET_SOURCES = "get_sources";
 
 //API Info
 const ROOT_URL = "https://newsapi.org/v1/";
@@ -24,14 +25,15 @@ export function getSources() {
     const requestURL = `${ROOT_URL}sources${SIG}&language=en`;
     const request = axios.get(requestURL);
     return{
-        type: GET_NEWS,
+        type: GET_SOURCES,
         payload: request
     };
 }
 
 //https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=
-export function getArticles() {
-    const requestURL = `${ROOT_URL}articles${SIG}&source=techcrunch`;
+export function getArticles(source) {
+    source = source || "techcrunch";
+    const requestURL = `${ROOT_URL}articles${SIG}&source=${source}`;
     const request = axios.get(requestURL);
     return{
         type: GET_NEWS,
