@@ -3,6 +3,7 @@
  * @date 2017-07-08.
  
     Reducer News
+	-handles news items
  */
 
 import {GET_NEWS} from '../actions';
