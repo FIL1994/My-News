@@ -1,3 +1,4 @@
+//July 2017
 //index of news application
 import React from 'react';
 import ReactDOM from 'react-dom';
