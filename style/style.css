@@ -1,3 +1,7 @@
+*{
+    font-family: Roboto, sans-serif;
+}
+
 .main-container {
     padding: 0 40px 120px;
     margin-left: -1px;
@@ -23,4 +27,16 @@
 
 .left-space{
     margin-left: 10px;
+}
+
+.my-container {
+    padding: 0.01em 16px;
+}
+
+.height-220{
+    height: 220px;
+}
+
+.no-height{
+    height: inherit !important;
 }

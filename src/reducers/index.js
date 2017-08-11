@@ -1,7 +1,3 @@
-/*
-reducer index
-*/
-
 import { combineReducers } from 'redux';
 import NewsReducer from './reducer_news';
 import SourcesReducer from './reducer_sources';

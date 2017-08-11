@@ -7,13 +7,15 @@ import React, {Component} from 'react';
 import {getArticles, getSources} from '../../actions';
 import {connect} from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import AutoComplete from 'material-ui/AutoComplete';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Snackbar from 'material-ui/Snackbar';
 import {List, ListItem} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import {Card, CardHeader, CardText, CardActions} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import {Grid, Row, Col} from 'react-flexbox-grid';
+import FeaturedSources from '../featured_sources';
 import _ from 'lodash';
 
 injectTapEventPlugin();
@@ -61,36 +63,8 @@ class Home extends Component {
     }
 
     render(){
-        let search, results, featuredSources;
+        let search, results;
         console.log(this.props.info);
-
-        if(!_.isEmpty(this.props.sources)){
-            console.log("sources", this.props.sources);
-            featuredSources = _.take(_.shuffle(this.props.sources.sources), 3).map(function (source) {
-               return (
-                   <div key={source.id}>
-                      <Card>
-                        <CardHeader
-                          title={source.name}
-                          actAsExpander={false}
-                          showExpandableButton={false}
-                        />
-                        <CardText expandable={false}>
-                            {source.description}
-                        </CardText>
-                        <CardActions>
-                            <FlatButton
-                                  label="Go to Site"
-                                  href={source.url}
-                                  target="_blank"
-                            />
-                        </CardActions>
-                      </Card>
-                     <br/>
-                   </div>
-               );
-            });
-        }
 
         try {
             const dataSource = this.props.sources.sources.map(function (val) {
@@ -124,7 +98,7 @@ class Home extends Component {
                         open={this.state.toastOpen}
                         message={this.state.toastMessage}
                         autoHideDuration={2000}
-                        className="mui--text-center"
+                        className="center-text"
                     />
                 </div>;
         }
@@ -137,19 +111,27 @@ class Home extends Component {
             let listItems = [];
 
             listItems.push(
-                <h3 className="mui--text-center">
-                    {this.state.currentSource}
-                </h3>
+              <h3 className="center-text">
+                  {this.state.currentSource}
+              </h3>,
+              <RaisedButton
+                primary
+                label="Add"
+                onClick={()=>{
+                  console.log("Adding " + this.state.currentSource);
+                }}
+                className="center-block center-text"
+              />
             );
 
             news.map(function (article, index) {
                 listItems.push(
-                    <div key={`article-${index}`}>
                         <ListItem
+                          key={`article-${index}`}
                             leftAvatar={<Avatar src={article.urlToImage}/>}
                             primaryText={article.title}
                             secondaryText={
-                                <div>
+                                <div className="no-height">
                                     <span>{article.publishedAt}</span>
                                     <p>{article.description}</p>
                                 </div>
@@ -159,31 +141,34 @@ class Home extends Component {
                             target="_blank"
                             className="list-item"
                         />
-                    </div>
                 );
             });
 
-            results = <List className="list">{listItems}</List>;
+            results =
+              <List className="list">{listItems}</List>;
         }
         catch(e){
             results = <div></div>;
         }
 
         return(
-            <div>
-                <h1 className="mui--text-center">Home Page - News API</h1>
+            <div className="my-container">
+                <h1 className="center-text">Home Page - News API</h1>
                 <br/>
                 {search}
                 <RaisedButton
-                    label="Update"
-                    onClick={this.onArticlesClick}
-                    className="mui--align-middle mui--text-center"
+                  secondary
+                  label="Update"
+                  onClick={this.onArticlesClick}
+                  className="center-block center-text"
                 />
                 <br/>
                 <br/>
-                {featuredSources}
-                <br/>
                 {results}
+                <Grid fluid>
+                  <h4>Featured Sources</h4>
+                  <FeaturedSources sources={this.props.sources.sources}/>
+                </Grid>
             </div>
         );
     }
