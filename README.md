@@ -1,2 +1,3 @@
-# My-News
+# My News
+<hr>
 A news app with React-Redux.
